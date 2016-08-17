@@ -2,6 +2,14 @@ FROM debian:jessie
 
 MAINTAINER "Braydee Johnson" <braydee@braydeejohnson.com>
 
+RUN \
+  apt-get update && \
+  apt-get install -y \
+  curl \
+  wget \
+  git \
+  vim
+
 RUN apt-get update -y && \
 	apt-get install -y \
 	php5-cli \
