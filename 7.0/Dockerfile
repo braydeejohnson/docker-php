@@ -25,6 +25,7 @@ RUN \
   php7.0-imap \
   php7.0-json \
   php7.0-ldap \
+  php7.0-mbstring \
   php7.0-mcrypt \
   php7.0-memcached \
   php7.0-mongodb \
@@ -36,7 +37,8 @@ RUN \
   php7.0-tidy \
   php7.0-xdebug \
   php7.0-xmlrpc \
-  php7.0-xsl
+  php7.0-xsl \
+  php7.0-zip
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
   composer global require "laravel/installer" && \
