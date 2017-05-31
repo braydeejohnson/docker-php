@@ -33,11 +33,12 @@ RUN apt-get update -y && \
     php5-xmlrpc \
     php5-xcache
 
-RUN 	pecl install mongodb
+RUN apt-get install -y \
+    php-pear \
+    php-5-dev \
+    libcurl3-openssl-dev
 
-RUN echo "extension=mongodb.so" > /etc/php/5.6/fpm/conf.d/20-mongodb.ini && \
-    echo "extension=mongodb.so" > /etc/php/5.6/cli/conf.d/20-mongodb.ini && \
-    echo "extension=mongodb.so" > /etc/php/5.6/mods-available/mongodb.ini
+RUN pecl install mongodb
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
   composer global require "laravel/installer" && \

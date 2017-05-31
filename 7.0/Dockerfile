@@ -40,12 +40,14 @@ RUN \
   php7.0-xsl \
   php7.0-zip
 
-RUN 	pecl install mongodb
+RUN apt-get install -y \
+    php-pear \
+    php7.0-dev \
+    libsasl2-dev \
+    libcurl3-openssl-dev
 
-RUN echo "extension=mongodb.so" > /etc/php/7.0/fpm/conf.d/20-mongodb.ini && \
-	echo "extension=mongodb.so" > /etc/php/7.0/cli/conf.d/20-mongodb.ini && \
-	echo "extension=mongodb.so" > /etc/php/7.0/mods-available/mongodb.ini
-	
+RUN pecl install mongodb
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
   composer global require "laravel/installer" && \
   composer global require "laravel/envoy=~1.0"
