@@ -17,6 +17,7 @@ RUN echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list.d/
 RUN \
   apt-get update && \
   apt-get install -y \
+  php7.0-bcmath \
   php7.0-cgi \
   php7.0-cli \
   php7.0-curl \

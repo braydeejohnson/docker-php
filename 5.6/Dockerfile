@@ -12,6 +12,7 @@ RUN \
 
 RUN apt-get update -y && \
 	apt-get install -y \
+	php5-bcmath \
 	php5-cli \
     php5-curl \
     php5-gd \
