@@ -10,22 +10,27 @@ RUN \
   git \
   vim
 
-RUN echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list.d/dotdeb.org.list && \
+RUN \
+  apt-get install -y \
+  apt-transport-https lsb-release ca-certificates && \
+  wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
+  echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list && \
+  echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list.d/dotdeb.org.list && \
   echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list.d/dotdeb.org.list && \
   wget -O- http://www.dotdeb.org/dotdeb.gpg | apt-key add -
 
 RUN \
   apt-get update && \
   apt-get install -y \
+  php7.1 \
   php7.1-bcmath \
   php7.1-cgi \
   php7.1-cli \
-  php7.1-common
+  php7.1-common \
   php7.1-curl \
   php7.1-gd \
   php7.1-imagick \
   php7.1-imap \
-  php7.1-intl \
   php7.1-json \
   php7.1-ldap \
   php7.1-mbstring \
